@@ -323,22 +323,18 @@ const ColorSimulator = () => {
             </div>
 
             <div className="canvas-main-area">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeScene.id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="canvas-wrapper"
-                >
-                  {/* El Canvas ahora dibuja la foto original y aplica la corrección matemática encima */}
-                  <canvas 
-                    ref={canvasRef}
-                    className={`color-overlay canvas-mask ${processing ? 'processing' : ''}`}
-                  />
-                </motion.div>
-              </AnimatePresence>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="canvas-wrapper"
+              >
+                {/* El Canvas ahora dibuja la foto original y aplica la corrección matemática encima */}
+                <canvas 
+                  ref={canvasRef}
+                  className={`color-overlay canvas-mask ${processing ? 'processing' : ''}`}
+                />
+              </motion.div>
             </div>
           </div>
 

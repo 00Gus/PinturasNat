@@ -313,4 +313,5 @@
 
 .canvas-mask.processing {
   filter: blur(2px);
+  opacity: 0.5;
 }
