@@ -11,10 +11,12 @@ import 'swiper/css/navigation';
 
 import './Portfolio.css';
 
+const base = import.meta.env.BASE_URL;
+
 // Generar array de 16 imágenes (asumiendo que están nombradas work1.jpeg a work16.jpeg)
 const projects = Array.from({ length: 16 }, (_, i) => ({
   id: i + 1,
-  image: `/assets/carousel/work${i + 1}.jpeg`,
+  image: `${base}assets/carousel/work${i + 1}.jpeg`,
   title: `Proyecto ${i + 1}`,
 }));
 

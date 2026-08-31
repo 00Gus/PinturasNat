@@ -95,10 +95,11 @@ const colorFamilies = [
   },
 ];
 
+const base = import.meta.env.BASE_URL;
 const scenes = [
-  { id: '2', name: 'Paleta 2', image: '/assets/simulator/p2-orig.jpeg', mask: '/assets/simulator/p2-mask.jpeg' },
-  { id: '3', name: 'Paleta 3', image: '/assets/simulator/p3-orig.png', mask: '/assets/simulator/p3-mask.png' },
-  { id: '1', name: 'Paleta 1', image: '/assets/simulator/p1-orig.jpeg', mask: '/assets/simulator/p1-mask.jpeg' }
+  { id: '2', name: 'Paleta 2', image: `${base}assets/simulator/p2-orig.jpeg`, mask: `${base}assets/simulator/p2-mask.jpeg` },
+  { id: '3', name: 'Paleta 3', image: `${base}assets/simulator/p3-orig.png`, mask: `${base}assets/simulator/p3-mask.png` },
+  { id: '1', name: 'Paleta 1', image: `${base}assets/simulator/p1-orig.jpeg`, mask: `${base}assets/simulator/p1-mask.jpeg` }
 ];
 
 const ColorSimulator = () => {
