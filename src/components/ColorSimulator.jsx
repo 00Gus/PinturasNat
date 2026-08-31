@@ -108,6 +108,25 @@ const ColorSimulator = () => {
   const [processing, setProcessing] = useState(false);
   const canvasRef = useRef(null);
 
+  const filteredFamilies = activeScene.id === '2' 
+    ? colorFamilies.filter(f => !['amarillos', 'rojos', 'naranjas'].includes(f.id)) 
+    : colorFamilies;
+
+  // Reset forbidden colors when switching to a restricted scene
+  useEffect(() => {
+    if (activeScene.id === '2') {
+      const forbidden = ['amarillos', 'rojos', 'naranjas'];
+      if (activeFamily && forbidden.includes(activeFamily.id)) {
+        setActiveFamily(null);
+      }
+      
+      const isColorForbidden = colorFamilies.find(f => f.shades.some(s => s.id === activeColor.id))?.id;
+      if (forbidden.includes(isColorForbidden)) {
+        setActiveColor(colorFamilies[0].shades[0]); // Reset to white
+      }
+    }
+  }, [activeScene, activeFamily, activeColor]);
+
   // Algoritmo Profesional de Enmascarado y Protección de Detalles
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -240,7 +259,7 @@ const ColorSimulator = () => {
                   >
                     <h3 className="palette-title">Paletas de Color</h3>
                     <div className="family-grid">
-                      {colorFamilies.map((family) => (
+                      {filteredFamilies.map((family) => (
                         <button
                           key={family.id}
                           className="family-swatch"
