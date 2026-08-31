@@ -308,7 +308,7 @@
 .canvas-mask {
   opacity: 1;
   transition: filter 0.3s;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .canvas-mask.processing {
