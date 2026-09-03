@@ -188,16 +188,21 @@ const ColorSimulator = () => {
             maskWeight = (mAlpha < 128) ? 0.0 : mBrightness / 255;
           }
 
-          // PROTEGER EL PISO EN LA IMAGEN 3 (Filtro Y estricto)
-          if (activeScene.id === '3' && maskWeight > 0) {
-            // El piso empieza más arriba de lo que pensábamos, alrededor del 60% de la imagen
-            const floorThreshold = canvas.height * 0.62;
-            if (y > floorThreshold) {
+          // PROTEGER EL PISO EN LA IMAGEN AMUEBLADA
+          if (activeScene.id === '2' && maskWeight > 0) {
+            // Sala amueblada: el piso es muy oscuro y la pared es gris claro.
+            // Protegemos los tonos oscuros en la mitad inferior de la imagen.
+            const r = data[i];
+            const g = data[i+1];
+            const b = data[i+2];
+            const luma = 0.299 * r + 0.587 * g + 0.114 * b;
+            
+            if (y > canvas.height * 0.55 && luma < 90) {
+              maskWeight = 0; // Protege el piso oscuro
+            }
+            // Además, un corte estricto al fondo por si acaso
+            if (y > canvas.height * 0.85) {
               maskWeight = 0;
-            } else if (y > canvas.height * 0.58) {
-              // Suavizado en la transición del zoclo (baseboard)
-              const fade = 1 - ((y - (canvas.height * 0.58)) / (canvas.height * 0.04));
-              maskWeight *= fade;
             }
           }
 

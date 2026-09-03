@@ -84,7 +84,7 @@ const Services = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="section-subtitle"
           >
-            Ofrecemos soluciones integrales de pintura y recubrimientos para cualquier tipo de proyecto, asegurando siempre la máxima calidad.
+            Ofrecemos cualquier tipo de servicio de pintura para casas, departamentos, trabajo comercial y residencial, destacando por nuestra responsabilidad y limpieza.
           </motion.p>
         </div>
 

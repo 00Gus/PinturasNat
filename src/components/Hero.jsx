@@ -23,7 +23,7 @@ const Hero = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Calidad, garantía y confianza en cada casa. Expertos en pintura residencial y comercial en Michoacán con acabados impecables que perduran en el tiempo.
+            Pintamos con calidad, trabajamos con pasión y honestidad. Expertos en cualquier tipo de servicio de pintura para casas, departamentos, trabajo comercial y residencial en Morelia, Michoacán.
           </motion.p>
           
           <motion.div 
@@ -59,7 +59,7 @@ const Hero = () => {
             <div className="stat-divider"></div>
             <div className="stat-item">
               <span className="stat-number">100%</span>
-              <span className="stat-label">Satisfacción garantizada</span>
+              <span className="stat-label">Responsabilidad y Limpieza</span>
             </div>
           </motion.div>
         </div>

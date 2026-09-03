@@ -27,7 +27,7 @@ const Contact = () => {
                 <div className="info-icon"><MapPin size={20} /></div>
                 <div>
                   <strong>Área de Servicio</strong>
-                  <p>Estado de Michoacán</p>
+                  <p>Morelia, Michoacán</p>
                 </div>
               </div>
               <div className="info-item">
@@ -51,6 +51,13 @@ const Contact = () => {
                   <p>Lunes - Sábado: 8:00 AM - 6:00 PM</p>
                 </div>
               </div>
+              <div className="info-item">
+                <div className="info-icon"><MapPin size={20} style={{opacity: 0}}/></div>
+                <div>
+                  <strong>Redes Sociales</strong>
+                  <p>Síguenos en Instagram, Facebook y TikTok</p>
+                </div>
+              </div>
             </div>
           </div>
           
@@ -68,11 +75,11 @@ const Contact = () => {
               <div className="form-group">
                 <label htmlFor="service">Servicio de Interés</label>
                 <select id="service">
-                  <option>Pintura de Interiores</option>
-                  <option>Pintura de Exteriores</option>
-                  <option>Acabados Especiales</option>
-                  <option>Papel Tapiz</option>
-                  <option>Comercial</option>
+                  <option>Cualquier tipo de servicio</option>
+                  <option>Pintura para Casas</option>
+                  <option>Pintura para Departamentos</option>
+                  <option>Trabajo Comercial</option>
+                  <option>Trabajo Residencial</option>
                 </select>
               </div>
               <div className="form-group">
