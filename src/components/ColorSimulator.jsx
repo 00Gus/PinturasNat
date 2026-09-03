@@ -188,17 +188,17 @@ const ColorSimulator = () => {
             maskWeight = (mAlpha < 128) ? 0.0 : mBrightness / 255;
           }
 
-          // PROTEGER EL PISO DE MADERA EN LA IMAGEN 3
+          // PROTEGER EL PISO EN LA IMAGEN 3 (Filtro Y estricto)
           if (activeScene.id === '3' && maskWeight > 0) {
-            const r = data[i];
-            const b = data[i + 2];
-            // El piso está en la mitad inferior y es de tono cálido (madera tiene más rojo que azul)
-            if (y > canvas.height * 0.6 && (r - b) > 15) {
+            // La pared termina aproximadamente en el 72% de la imagen hacia abajo.
+            // Todo lo que esté por debajo del 73% de la altura lo forzamos a 0 para no pintar el piso.
+            const floorThreshold = canvas.height * 0.73;
+            if (y > floorThreshold) {
               maskWeight = 0;
-            }
-            // También proteger la parte inferior del todo (alfombra/piso oscuro) por si acaso
-            if (y > canvas.height * 0.85) {
-              maskWeight = 0;
+            } else if (y > canvas.height * 0.70) {
+              // Suavizado en la transición del zoclo (baseboard)
+              const fade = 1 - ((y - (canvas.height * 0.70)) / (canvas.height * 0.03));
+              maskWeight *= fade;
             }
           }
 
