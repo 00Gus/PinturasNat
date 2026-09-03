@@ -174,6 +174,10 @@ const ColorSimulator = () => {
 
         // Procesamiento Píxel por Píxel
         for (let i = 0; i < data.length; i += 4) {
+          const pixelIndex = i / 4;
+          const x = pixelIndex % canvas.width;
+          const y = Math.floor(pixelIndex / canvas.width);
+
           const mAlpha = mData[i + 3];
           const mBrightness = (mData[i] + mData[i + 1] + mData[i + 2]) / 3;
           
@@ -182,6 +186,20 @@ const ColorSimulator = () => {
             maskWeight = (mAlpha < 128) ? 1.0 : (255 - mBrightness) / 255;
           } else {
             maskWeight = (mAlpha < 128) ? 0.0 : mBrightness / 255;
+          }
+
+          // PROTEGER EL PISO DE MADERA EN LA IMAGEN 3
+          if (activeScene.id === '3' && maskWeight > 0) {
+            const r = data[i];
+            const b = data[i + 2];
+            // El piso está en la mitad inferior y es de tono cálido (madera tiene más rojo que azul)
+            if (y > canvas.height * 0.6 && (r - b) > 15) {
+              maskWeight = 0;
+            }
+            // También proteger la parte inferior del todo (alfombra/piso oscuro) por si acaso
+            if (y > canvas.height * 0.85) {
+              maskWeight = 0;
+            }
           }
 
           if (maskWeight > 0) {
@@ -196,8 +214,6 @@ const ColorSimulator = () => {
             if (luma < 30) {
               maskWeight *= (luma / 30); 
             }
-            // NOTA: La protección de brillos (luma > 230) fue eliminada porque causaba
-            // artefactos blancos en paredes altamente iluminadas por el sol.
 
             // Aplicar técnica MULTIPLY matemática (respeta las texturas de la pared)
             const r_paint = (r * activeR) / 255;
