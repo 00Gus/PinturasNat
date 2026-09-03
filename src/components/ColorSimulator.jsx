@@ -190,14 +190,13 @@ const ColorSimulator = () => {
 
           // PROTEGER EL PISO EN LA IMAGEN 3 (Filtro Y estricto)
           if (activeScene.id === '3' && maskWeight > 0) {
-            // La pared termina aproximadamente en el 72% de la imagen hacia abajo.
-            // Todo lo que esté por debajo del 73% de la altura lo forzamos a 0 para no pintar el piso.
-            const floorThreshold = canvas.height * 0.73;
+            // El piso empieza más arriba de lo que pensábamos, alrededor del 60% de la imagen
+            const floorThreshold = canvas.height * 0.62;
             if (y > floorThreshold) {
               maskWeight = 0;
-            } else if (y > canvas.height * 0.70) {
+            } else if (y > canvas.height * 0.58) {
               // Suavizado en la transición del zoclo (baseboard)
-              const fade = 1 - ((y - (canvas.height * 0.70)) / (canvas.height * 0.03));
+              const fade = 1 - ((y - (canvas.height * 0.58)) / (canvas.height * 0.04));
               maskWeight *= fade;
             }
           }
