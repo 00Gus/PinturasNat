@@ -35,7 +35,7 @@
 
 .color-palette-advanced {
   position: relative;
-  min-height: 350px;
+  min-height: 420px;
   overflow: hidden;
 }
 
@@ -77,7 +77,6 @@
   text-align: left;
 }
 
-/* VISTA 2: TONOS */
 .shades-view {
   position: absolute;
   top: 0;
@@ -85,6 +84,17 @@
   width: 100%;
   height: 100%;
   background-color: var(--bg-card);
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+/* Custom scrollbar for shades-view */
+.shades-view::-webkit-scrollbar {
+  width: 6px;
+}
+.shades-view::-webkit-scrollbar-thumb {
+  background-color: var(--accent-secondary);
+  border-radius: 4px;
 }
 
 .shades-header {
@@ -116,36 +126,66 @@
   margin-bottom: 0;
 }
 
-.advanced-grid {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.color-grid {
+.circular-grid {
   display: grid;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem 1rem;
+  margin-bottom: 2rem;
+  padding: 0.5rem 0;
 }
 
-.color-swatch {
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: var(--radius-sm);
+@media (max-width: 500px) {
+  .circular-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.color-swatch-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.color-swatch-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
   border: 2px solid transparent;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), inset 0 2px 4px rgba(255,255,255,0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  padding: 0;
 }
 
-.color-swatch:hover {
-  transform: scale(1.05);
+@media (min-width: 992px) {
+  .color-swatch-circle {
+    width: 64px;
+    height: 64px;
+  }
 }
 
-.color-swatch.active {
-  border-color: var(--accent-primary);
-  transform: scale(1.05);
-  box-shadow: 0 0 0 2px var(--bg-card), 0 0 0 4px var(--accent-primary);
+.color-swatch-circle:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), inset 0 2px 4px rgba(255,255,255,0.2);
+}
+
+.color-swatch-circle.active {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 3px var(--bg-card), 0 0 0 5px var(--accent-primary), 0 10px 15px -3px rgba(0,0,0,0.2);
+}
+
+.color-swatch-label {
+  font-size: 0.65rem;
+  color: var(--text-main);
+  text-align: center;
+  line-height: 1.2;
+  max-width: 100%;
+  font-weight: 500;
+  opacity: 0.9;
 }
 
 .active-color-info {

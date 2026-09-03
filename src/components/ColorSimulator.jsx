@@ -3,96 +3,59 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Paintbrush, ArrowLeft, Wand2 } from 'lucide-react';
 import './ColorSimulator.css';
 
-// Estructura de familias de colores al estilo Comex
+// Estructura de familias de colores al estilo Comex / Dunn-Edwards
 const colorFamilies = [
   {
-    id: 'off-whites', name: 'Off Whites', color: '#F8F8F2',
+    id: 'clasica', name: 'Favoritos en Morelia', color: '#B1AFAE',
     shades: [
-      { id: 'w1', name: 'Blanco Puro', hex: '#FFFFFF' },
-      { id: 'w2', name: 'Blanco Ostra', hex: '#F4F4EB' },
-      { id: 'w3', name: 'Blanco Humo', hex: '#F0F0F0' },
-      { id: 'w4', name: 'Algodón', hex: '#FBFBF9' },
-      { id: 'w5', name: 'Lino', hex: '#FAF0E6' },
-      { id: 'w6', name: 'Marfil', hex: '#FFFFF0' },
+      { id: 'c1', name: 'DET618 Industrial Age', hex: '#B1AFAE' },
+      { id: 'c2', name: 'DE6328 Anchor Gray', hex: '#5A6266' },
+      { id: 'c3', name: 'DET453 Majolica Earthenware', hex: '#A35E4B' },
+      { id: 'c4', name: 'DET584 Postwar Boom', hex: '#4B739B' },
+      { id: 'c5', name: 'DET657 Bakelite Yellow', hex: '#C7B576' },
+      { id: 'c6', name: 'DET652 Sunbaked Adobe', hex: '#B49E69' },
+      { id: 'c7', name: 'DET653 Historic White', hex: '#EBE8D8' },
+      { id: 'c8', name: 'DET607 Life Aquatic', hex: '#98ACA3' },
+      { id: 'c9', name: 'DEC728 Madera', hex: '#EAC88B' },
+      { id: 'c10', name: 'DEW340 Whisper', hex: '#F4F2EC' },
+      { id: 'c11', name: 'DET504 That\'s Atomic', hex: '#AAB186' },
+      { id: 'c12', name: 'DET681 Moderne Class', hex: '#735A45' },
     ]
   },
   {
-    id: 'amarillos', name: 'Amarillos', color: '#FDE047',
+    id: 'mediterranea', name: 'Estilo Colonial', color: '#BC8A51',
     shades: [
-      { id: 'y1', name: 'Luz de Sol', hex: '#FEF08A' },
-      { id: 'y2', name: 'Trigo', hex: '#FDE047' },
-      { id: 'y3', name: 'Mostaza', hex: '#EAB308' },
-      { id: 'y4', name: 'Oro Viejo', hex: '#CA8A04' },
-      { id: 'y5', name: 'Girasol', hex: '#EAB308' },
-      { id: 'y6', name: 'Ocre', hex: '#B45309' },
+      { id: 'm1', name: 'DET685 Mission Gold', hex: '#BC8A51' },
+      { id: 'm2', name: 'DEW336 White Sand', hex: '#EFE8D6' },
+      { id: 'm3', name: 'DEA175 Black Forest', hex: '#545A4D' },
+      { id: 'm4', name: 'DET454 Arizona Clay', hex: '#B86D53' },
+      { id: 'm5', name: 'DE6066 Desert Rock', hex: '#D2C8BC' },
+      { id: 'm6', name: 'DET694 Carmel Mission', hex: '#947F75' },
+      { id: 'm7', name: 'DET695 Grange Hall', hex: '#8B7C71' },
+      { id: 'm8', name: 'DE6070 Chocolate Chunk', hex: '#5A483F' },
+      { id: 'm9', name: 'DET513 California Sagebrush', hex: '#8A9884' },
+      { id: 'm10', name: 'DEW340 Whisper', hex: '#F4F2EC' },
+      { id: 'm11', name: 'DET602 Gray Monument', hex: '#697A79' },
+      { id: 'm12', name: 'DE5362 Maple Syrup', hex: '#C59B3F' },
     ]
   },
   {
-    id: 'naranjas', name: 'Naranjas', color: '#F97316',
+    id: 'neutros', name: 'Neutros y Modernos', color: '#928E84',
     shades: [
-      { id: 'o1', name: 'Melocotón', hex: '#FFEDD5' },
-      { id: 'o2', name: 'Mandarina', hex: '#FB923C' },
-      { id: 'o3', name: 'Calabaza', hex: '#F97316' },
-      { id: 'o4', name: 'Ladrillo', hex: '#C2410C' },
-      { id: 'o5', name: 'Coral', hex: '#F87171' },
-      { id: 'o6', name: 'Óxido', hex: '#9A3412' },
+      { id: 'n1', name: 'DE6225 Fossil', hex: '#EFEFE8' },
+      { id: 'n2', name: 'DE6228 Play on Gray', hex: '#A7ABA4' },
+      { id: 'n3', name: 'DET620 Barnwood Gray', hex: '#928E84' },
+      { id: 'n4', name: 'DET514 Smoke & Ash', hex: '#8C9C90' },
+      { id: 'n5', name: 'DET635 Ecru Wealth', hex: '#D0CBB2' },
+      { id: 'n6', name: 'DET512 Whale Watching', hex: '#9CA496' },
+      { id: 'n7', name: 'DET626 Metal Fringe', hex: '#817D77' },
+      { id: 'n8', name: 'DET656 Heart of Gold', hex: '#AE8C3B' },
+      { id: 'n9', name: 'DEC751 Ash Gray', hex: '#C2B9AF' },
+      { id: 'n10', name: 'DEC750 Bison Beige', hex: '#9C8C7C' },
+      { id: 'n11', name: 'DET624 Sorrel Felt', hex: '#A89A8A' },
+      { id: 'n12', name: 'DET634 Downing to Earth', hex: '#544E43' },
     ]
-  },
-  {
-    id: 'rojos', name: 'Rojos', color: '#EF4444',
-    shades: [
-      { id: 'r1', name: 'Rosa Pálido', hex: '#FECDD3' },
-      { id: 'r2', name: 'Cereza', hex: '#F43F5E' },
-      { id: 'r3', name: 'Carmín', hex: '#E11D48' },
-      { id: 'r4', name: 'Vino Tinto', hex: '#9F1239' },
-      { id: 'r5', name: 'Granate', hex: '#881337' },
-      { id: 'r6', name: 'Rubí', hex: '#BE123C' },
-    ]
-  },
-  {
-    id: 'azules', name: 'Azules', color: '#3B82F6',
-    shades: [
-      { id: 'b1', name: 'Cielo', hex: '#BAE6FD' },
-      { id: 'b2', name: 'Océano', hex: '#38BDF8' },
-      { id: 'b3', name: 'Zafiro', hex: '#2563EB' },
-      { id: 'b4', name: 'Nocturno', hex: '#1E3A8A' },
-      { id: 'b5', name: 'Índigo', hex: '#3730A3' },
-      { id: 'b6', name: 'Cobalto', hex: '#1D4ED8' },
-    ]
-  },
-  {
-    id: 'verdes', name: 'Verdes', color: '#10B981',
-    shades: [
-      { id: 'g1', name: 'Menta', hex: '#A7F3D0' },
-      { id: 'g2', name: 'Manzana', hex: '#34D399' },
-      { id: 'g3', name: 'Esmeralda', hex: '#10B981' },
-      { id: 'g4', name: 'Bosque', hex: '#065F46' },
-      { id: 'g5', name: 'Oliva', hex: '#65A30D' },
-      { id: 'g6', name: 'Pino', hex: '#166534' },
-    ]
-  },
-  {
-    id: 'neutros', name: 'Neutros', color: '#A8A29E',
-    shades: [
-      { id: 'n1', name: 'Arena', hex: '#E7E5E4' },
-      { id: 'n2', name: 'Piedra', hex: '#D6D3D1' },
-      { id: 'n3', name: 'Topo', hex: '#A8A29E' },
-      { id: 'n4', name: 'Marrón Oscuro', hex: '#57534E' },
-      { id: 'n5', name: 'Chocolate', hex: '#451A03' },
-      { id: 'n6', name: 'Moca', hex: '#78350F' },
-    ]
-  },
-  {
-    id: 'grises', name: 'Grises', color: '#6B7280',
-    shades: [
-      { id: 'gr1', name: 'Gris Perla', hex: '#F3F4F6' },
-      { id: 'gr2', name: 'Gris Acero', hex: '#9CA3AF' },
-      { id: 'gr3', name: 'Gris Plomo', hex: '#4B5563' },
-      { id: 'gr4', name: 'Carbón', hex: '#1F2937' },
-      { id: 'gr5', name: 'Ceniza', hex: '#374151' },
-      { id: 'gr6', name: 'Asfalto', hex: '#111827' },
-    ]
-  },
+  }
 ];
 
 const base = import.meta.env.BASE_URL;
@@ -104,28 +67,12 @@ const scenes = [
 const ColorSimulator = () => {
   const [activeScene, setActiveScene] = useState(scenes[0]);
   const [activeFamily, setActiveFamily] = useState(null);
-  const [activeColor, setActiveColor] = useState(colorFamilies[0].shades[0]); // Default white
+  const [activeColor, setActiveColor] = useState(colorFamilies[0].shades[6]); // Default Historic White
   const [processing, setProcessing] = useState(false);
   const canvasRef = useRef(null);
 
-  const filteredFamilies = activeScene.id === '2' 
-    ? colorFamilies.filter(f => !['amarillos', 'rojos', 'naranjas'].includes(f.id)) 
-    : colorFamilies;
-
-  // Reset forbidden colors when switching to a restricted scene
-  useEffect(() => {
-    if (activeScene.id === '2') {
-      const forbidden = ['amarillos', 'rojos', 'naranjas'];
-      if (activeFamily && forbidden.includes(activeFamily.id)) {
-        setActiveFamily(null);
-      }
-      
-      const isColorForbidden = colorFamilies.find(f => f.shades.some(s => s.id === activeColor.id))?.id;
-      if (forbidden.includes(isColorForbidden)) {
-        setActiveColor(colorFamilies[0].shades[0]); // Reset to white
-      }
-    }
-  }, [activeScene, activeFamily, activeColor]);
+  // Todas las colecciones disponibles sin restricción, al ser paletas curadas
+  const filteredFamilies = colorFamilies;
 
   // Algoritmo Profesional de Enmascarado y Protección de Detalles
   useEffect(() => {
@@ -310,19 +257,21 @@ const ColorSimulator = () => {
                       <h3 className="palette-title">{activeFamily.name}</h3>
                     </div>
                     
-                    <div className="color-grid advanced-grid">
+                    <div className="color-grid circular-grid">
                       {activeFamily.shades.map((shade) => (
-                        <button
-                          key={shade.id}
-                          className={`color-swatch ${activeColor.id === shade.id ? 'active' : ''}`}
-                          style={{ backgroundColor: shade.hex }}
-                          onClick={() => setActiveColor(shade)}
-                          title={shade.name}
-                        >
-                          {activeColor.id === shade.id && (
-                            <Paintbrush size={16} color={isDarkColor(shade.hex) ? '#fff' : '#000'} />
-                          )}
-                        </button>
+                        <div key={shade.id} className="color-swatch-wrapper">
+                          <button
+                            className={`color-swatch-circle ${activeColor.id === shade.id ? 'active' : ''}`}
+                            style={{ backgroundColor: shade.hex }}
+                            onClick={() => setActiveColor(shade)}
+                            title={shade.name}
+                          >
+                            {activeColor.id === shade.id && (
+                              <Paintbrush size={20} color={isDarkColor(shade.hex) ? '#fff' : '#000'} className="active-icon" />
+                            )}
+                          </button>
+                          <span className="color-swatch-label">{shade.name}</span>
+                        </div>
                       ))}
                     </div>
                     <div className="active-color-info">
