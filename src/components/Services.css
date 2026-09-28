@@ -217,7 +217,7 @@
   width: 100%;
   padding: 0;
   flex-grow: 1;
-  background: #000;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -227,10 +227,10 @@
   position: relative;
   width: 100%;
   max-width: 600px;
-  height: 65vh; /* Enough height to show tall images */
+  height: 65vh;
   max-height: 800px;
   overflow: hidden;
-  background: #1e293b; /* A soft dark background for letterboxing */
+  background: transparent;
   border-radius: var(--radius-md);
 }
 
