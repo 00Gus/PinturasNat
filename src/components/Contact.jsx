@@ -33,8 +33,11 @@ const Contact = () => {
               <div className="info-item">
                 <div className="info-icon"><Phone size={20} /></div>
                 <div>
-                  <strong>Teléfono</strong>
-                  <p>+52 (123) 456-7890</p>
+                  <strong>Teléfonos</strong>
+                  <p>
+                    <a href="tel:7861391921" className="phone-link">786 139 1921</a><br/>
+                    <a href="tel:7121624284" className="phone-link">712 162 4284</a>
+                  </p>
                 </div>
               </div>
               <div className="info-item">
@@ -62,19 +65,23 @@ const Contact = () => {
           </div>
           
           <div className="contact-form-wrapper">
-            <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+            <form className="contact-form" action="https://formsubmit.co/16055da0fbe3bee03d299e4bf0dda352" method="POST">
+              {/* FormSubmit Configuration */}
+              <input type="hidden" name="_subject" value="¡Nuevo prospecto desde la página web de Pinturas Solís!" />
+              <input type="hidden" name="_template" value="table" />
+              
               <h3>Solicitar Presupuesto</h3>
               <div className="form-group">
                 <label htmlFor="name">Nombre Completo</label>
-                <input type="text" id="name" placeholder="Ej. Juan Pérez" required />
+                <input type="text" id="name" name="Nombre" placeholder="Ej. Juan Pérez" required />
               </div>
               <div className="form-group">
                 <label htmlFor="phone">Teléfono</label>
-                <input type="tel" id="phone" placeholder="Ej. 123 456 7890" required />
+                <input type="tel" id="phone" name="Teléfono" placeholder="Ej. 123 456 7890" required />
               </div>
               <div className="form-group">
                 <label htmlFor="service">Servicio de Interés</label>
-                <select id="service">
+                <select id="service" name="Servicio">
                   <option>Cualquier tipo de servicio</option>
                   <option>Pintura para Casas</option>
                   <option>Pintura para Departamentos</option>
@@ -84,7 +91,7 @@ const Contact = () => {
               </div>
               <div className="form-group">
                 <label htmlFor="message">Mensaje / Detalles (Opcional)</label>
-                <textarea id="message" rows="4" placeholder="Cuéntanos un poco sobre tu proyecto..."></textarea>
+                <textarea id="message" name="Mensaje" rows="4" placeholder="Cuéntanos un poco sobre tu proyecto..."></textarea>
               </div>
               <button type="submit" className="btn-primary w-full">
                 Enviar Solicitud
