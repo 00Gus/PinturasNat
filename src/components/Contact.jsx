@@ -44,7 +44,7 @@ const Contact = () => {
                 <div className="info-icon"><Mail size={20} /></div>
                 <div>
                   <strong>Correo Electrónico</strong>
-                  <p>contacto@pinturassolis.com</p>
+                  <p><a href="mailto:pinturassolis368@gmail.com" className="phone-link">pinturassolis368@gmail.com</a></p>
                 </div>
               </div>
               <div className="info-item">
