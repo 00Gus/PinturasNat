@@ -355,3 +355,38 @@
   filter: blur(2px);
   opacity: 0.5;
 }
+
+/* MOBILE LAYOUT: IMAGE TOP, CONTROLS BOTTOM */
+@media (max-width: 991px) {
+  .simulator-container {
+    display: flex;
+    flex-direction: column-reverse; /* This puts the canvas (which is second in HTML) on top */
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .canvas-main-area {
+    min-height: 50vh; /* Make sure the image is large enough */
+  }
+
+  /* Make the controls more compact on mobile */
+  .color-palette-advanced {
+    min-height: 350px;
+  }
+
+  .simulator-controls {
+    gap: 1rem;
+  }
+
+  /* Compact the swatches */
+  .circular-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .color-swatch-circle {
+    width: 48px;
+    height: 48px;
+  }
+}
